@@ -1,5 +1,5 @@
 # Caso 4  
-- Pipeline para el despliegue de IaC de Terraform via Jenkins
+- Pipeline para el despliegue de IaC de Terraform via Jenkins  
 Vamos a necesitar un pipeline que despliegue IaC que anteriormente habiamos importado (Caso 2) utilizando Jenkins. Ademas de los recursos anteriores, tambien vamos a necesitar son los siguientes.  
 - IAM Role con permisos para acceder a la vpc-node-app, permisos para acceder al bucket de s3 node-app-backup
 - S3 con versionamiento llamado con el prefix: node-app-logs-*
