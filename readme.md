@@ -20,6 +20,7 @@ user : juan
 password : 1234  
 
 ### conseguir los archivos de tf del caso 2.  
+
 Hice un repositorio nuevo 
 
 <https://github.com/Full-Juan-Ortega/challangue-ejercicio-4>  
