@@ -3,14 +3,14 @@
 Vamos a necesitar un pipeline que despliegue IaC que anteriormente habiamos importado (Caso 2) utilizando Jenkins. Ademas de los recursos anteriores, tambien vamos a necesitar son los siguientes.  
 - IAM Role con permisos para acceder a la vpc-node-app, permisos para acceder al bucket de s3 node-app-backup
 - S3 con versionamiento llamado con el prefix: node-app-logs-*
-NOTA: Este pipeline debera utilizar el state remoto del Caso 2
+NOTA: Este pipeline debera utilizar el state remoto del Caso 2  
 
 ## dependencias : 
 - Instale terraform segun la doc oficial :  
 <https://developer.hashicorp.com/terraform/install?product_intent=terraform#linux>  
 
 
-### jenkins
+### Levantar el pod de jenkins publicamente.
 exponer jenkins publicamente en el puerto 30000 :  
 kubectl port-forward svc/jenkins 30000:30000 --address 0.0.0.0 &  
 
@@ -20,6 +20,9 @@ user : juan
 password : 1234  
 
 ### conseguir los archivos de tf del caso 2.  
+Hice un repositorio nuevo 
+
+<https://github.com/Full-Juan-Ortega/challangue-ejercicio-4>  
 
 Para esto aprendi a usar la auth via ssh de git.  
 
@@ -57,10 +60,6 @@ En este caso cree la politica el ROL y su correspondiente asociacion.
 
 arn:aws:ec2:us-west-2:123456789012:vpc/vpc-node-app  
 Resource = "arn:aws:ec2:us-west-2:123456789012:vpc/vpc-node-app"   
-
-
-
-test :  
 
 
 
