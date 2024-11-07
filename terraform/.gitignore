@@ -1,0 +1,28 @@
+# Archivos de estado de Terraform
+*.tfstate
+*.tfstate.*
+
+# Archivos de respaldo de Terraform
+*.backup
+
+# Archivos de configuración de Terraform
+.terraform/
+.terraform.tfstate.lock.info
+
+# Archivos de logs y planes generados
+crash.log
+terraform.tfplan
+*.tfplan
+
+# Archivos de salida de variables sensibles
+*.tfvars
+*.tfvars.json
+
+# Archivos de extensión o personalización
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Archivos de lock de proveedores
+.terraform.lock.hcl
