@@ -123,9 +123,16 @@ esta imagen contiene los archivos tf , de k8 y jenkins.
 docker build -t juanortegait/jenkins-with-dependencys:v1 .
 docker push juanortegait/jenkins-with-dependencys
 
+<https://hub.docker.com/layers/juanortegait/jenkins-with-dependencys/v1/images/sha256-74b30f1951907ca5368ffd996dacda65dcbbd13f222a9e1291eb59932dec0cbe?context=explore>  
+
 ### Desplegar en ec2.
 
 Usar la imagen creada para que el pod de jenkins utilice los archivos que estan dentro de la misma imagen.
+
+- Traer la imagen del registry.
+- modificar el pod kubernetes para que el pod despliegue esa imagen.
+- levantar el pod de jenkins , hacer la config inicial y instalar el plugins aws credentials.
+- crear las credenciales y crear el job que despliegue el jenkinsfile en el repositorio.
 
 
 # comandos

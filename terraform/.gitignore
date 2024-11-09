@@ -26,3 +26,5 @@ override.tf.json
 
 # Archivos de lock de proveedores
 .terraform.lock.hcl
+
+../ej-02.pem
