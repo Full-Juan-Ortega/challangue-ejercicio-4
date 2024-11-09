@@ -10,7 +10,7 @@ pipeline {
                 echo 'Hello World'
             }
         }
-        stage('02-git-pull') {
+        stage('02-limpiar y git-pull') {
             steps {
                 sh 'rm -rf challangue-ejercicio-4'
                 sh 'git clone https://github.com/Full-Juan-Ortega/challangue-ejercicio-4.git'
@@ -21,7 +21,8 @@ pipeline {
                 sh  'cd challangue-ejercicio-4/terraform && pwd'
             }
         }
-        stage('List S3 Buckets') {
+
+        stage('test List S3 Buckets') {
             steps {
                 withCredentials([aws(credentialsId: 'AWS-CREDENTIALS')]) { 
                     sh 'aws s3 ls'

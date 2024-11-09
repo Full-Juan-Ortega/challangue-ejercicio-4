@@ -72,6 +72,9 @@ url : http://44.210.52.58:30000/
 user : juan  
 password : 1234  
 
+3) instalar aws credentials y cargar las credenciales.
+4) con username&password cargar el usuario y access key de github.
+
 ### dependencias necesarias dentro del pod
 
 - terraform
