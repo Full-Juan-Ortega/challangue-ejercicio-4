@@ -32,7 +32,7 @@ pipeline {
                     dir('challangue-ejercicio-4/terraform') {  // Cambia al directorio correcto
                         sh 'pwd'  // Verifica el directorio
                         sh 'terraform init'  // Ejecuta terraform plan
-                        sh 'terraform apply -auto-aprove'
+                        sh 'terraform apply -auto-approve'
                     }
                 }
             }
