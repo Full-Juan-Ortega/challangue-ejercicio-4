@@ -5,7 +5,7 @@ Vamos a necesitar un pipeline que despliegue IaC que anteriormente habiamos impo
 - S3 con versionamiento llamado con el prefix: node-app-logs-*
 NOTA: Este pipeline debera utilizar el state remoto del Caso 2  
 
-## dependencias : 
+## dependencias que me faltaban : 
 - Instale terraform segun la doc oficial :  
 <https://developer.hashicorp.com/terraform/install?product_intent=terraform#linux>  
 
@@ -27,11 +27,11 @@ Hice un repositorio nuevo
 
 Para esto aprendi a usar la auth via ssh de git.  
 
-ssh-keygen -t ed25519 -C "juan.ortega.it@gmail.com"
-eval "$(ssh-agent -s)"
-ssh-add .ssh/id_ed25519
-cat ~/.ssh/id_ed25519.pub
-ssh -T git@github.com
+ssh-keygen -t ed25519 -C "juan.ortega.it@gmail.com"  
+eval "$(ssh-agent -s)"  
+ssh-add .ssh/id_ed25519  
+cat ~/.ssh/id_ed25519.pub  
+ssh -T git@github.com  
 
 ### agregar el iam role y el s3.  
 En este paso arme los nuevos archivos tf para los recursos que debo provisionar.  
@@ -57,18 +57,58 @@ En este caso cree la politica el ROL y su correspondiente asociacion.
 <https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy> 
 
 
-- POLICY : Estoy aprendiendo como buscar las policys necesarias para lo que necesito hacer, por otro lado tambien estoy tratando de aprender como testear la policy que estoy haciendo con el AWS simulator.  
+## jenkins pipeline.
 
-arn:aws:ec2:us-west-2:123456789012:vpc/vpc-node-app  
-Resource = "arn:aws:ec2:us-west-2:123456789012:vpc/vpc-node-app"   
+### Tengo pensado levantar un docker local con jenkins.  
+Acceder desde mi local a jenkins :  
+* docker run -dti -p 8080:8080 -p 50000:50000 --restart=on-failure -v /home/juan/jenkins_data:/var/jenkins_home
+  jenkins/jenkins:lts-jdk17  
+
+### Config inicial:  
+1) cat /var/jenkins_home/secrets/initialAdminPassword  
+2) Install sugested pluggins.
+datos de jenkins : (saltie)
+url : http://44.210.52.58:30000/  
+user : juan  
+password : 1234  
+
+### dependencias necesarias dentro del pod
+
+- terraform
+
+Loguearse como root user.  
+docker exec -u root -it $(docker ps -l -q) /bin/bash    
+apt update  
+apt install -y wget gnupg lsb-release software-properties-common  
+
+wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg --yes
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs)   main" | tee /etc/apt/sources.list.d/hashicorp.list  
+apt update && apt install terraform  
 
 
+- aws cli  
+
+docker exec -u root -it $(docker ps -l -q) /bin/bash  
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"  
+unzip awscliv2.zip  
+./aws/install  
+
+- instalar plugins de aws credentials.  
 
 
-### jenkins pipeline.
+### Hacer un pipeline que me devuelva un comentario por consola.
+<https://www.jenkins.io/doc/book/pipeline/getting-started/>
+1) 
+- Hacer un pipeline que haga un pull a un repositorio.
+- Hacer un pipeline que se conecte a aws.
+    AWS-MY-CREDENTIALS
+- Hacer un pipeline que despliegue el IaC.
 
+Subir el pipeline a github.
 
+### Desplegar en ec2.
 
+Una ves el pipeline definido , en la ec2 descargare todo.
 
 # comandos
 
@@ -78,4 +118,3 @@ kubectl exec -it jenkins-757cdf4c64-8rh8t -- cat /var/jenkins_home/secret
 s/initialAdminPassword  
 
 
-Migrar la carpeta a un nuevo repo.

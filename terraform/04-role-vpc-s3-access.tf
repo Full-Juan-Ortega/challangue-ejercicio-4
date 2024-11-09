@@ -60,7 +60,7 @@ resource "aws_iam_policy" "vpc_s3_policy" {
                 "ec2:DescribeVpcEndpointConnections",
                 "ec2:DescribeVpcEndpointServiceConfigurations",
                 "ec2:DescribeVpcEndpointServicePermissions",
-                "ec2:DescribeVpcEndpointServices",
+                "ec2:DescribeyesVpcEndpointServices",
                 "ec2:DescribeVpcPeeringConnections",
                 "ec2:DescribeVpcs",
                 "ec2:DescribeVpnConnections",
@@ -68,8 +68,8 @@ resource "aws_iam_policy" "vpc_s3_policy" {
                 "ec2:GetSecurityGroupsForVpc"
             ],
 
-            //arn:aws:ec2:us-east-1:0da1ea0e28f817b81:vpc/vpc-node-app
-            Resource = "*"  
+            //
+            Resource = "arn:aws:ec2:us-east-1:0da1ea0e28f817b81:vpc/vpc-node-app"  
              }
 ,
       {
