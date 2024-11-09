@@ -1,9 +1,11 @@
-# DOCKERFILE PARA PRUEBAS LOCALES.
-# Usa la imagen base oficial de Jenkins
+
+# Imagen basada en jenkins + terraform + aws cli
 FROM jenkins/jenkins:lts
 
 USER root
-
+#copiar al usuario de jenkins
+COPY ./terraform /home/jenkins/terraform
+COPY ./kubernetes /home/jenkins/kubernetes
 # Actualizar y preparar el sistema para la instalación de Terraform
 RUN apt update && \
     apt install -y wget gnupg lsb-release software-properties-common && \

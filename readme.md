@@ -61,8 +61,7 @@ En este caso cree la politica el ROL y su correspondiente asociacion.
 
 ### Tengo pensado levantar un docker local con jenkins.  
 Acceder desde mi local a jenkins :  
-* docker run -dti -p 8080:8080 -p 50000:50000 --restart=on-failure -v /home/juan/jenkins_data:/var/jenkins_home
-  jenkins/jenkins:lts-jdk17  
+* docker run -dti -p 30000:8080 -p 50000:50000 --restart=on-failure -v /home/juan/jenkins_data:/var/jenkins_home jenkins/jenkins:lts-jdk17  
 
 ### Config inicial:  
 1) cat /var/jenkins_home/secrets/initialAdminPassword  
@@ -104,14 +103,30 @@ unzip awscliv2.zip
 1) 
 - Hacer un pipeline que haga un pull a un repositorio.
 - Hacer un pipeline que se conecte a aws.
-    AWS-MY-CREDENTIALS
 - Hacer un pipeline que despliegue el IaC.
 
 Subir el pipeline a github.
 
+### Crear imagen docker con todas las dependencias.
+
+Cree el dockerfile y use los comandos que venia trabajando ya para instalar aws cli y terraform.  
+Ademas quiero agregarle los archivos de terraform para luego desplegarlos.
+
+docker build -t jenkins-with-dependencys .
+
+
+### Subir la imagen a docker hub.
+
+subir la imagen a dockerhub para despues usarla en la ec2 con minikube.   
+esta imagen contiene los archivos tf , de k8 y jenkins.
+
+docker build -t juanortegait/jenkins-with-dependencys:v1 .
+docker push juanortegait/jenkins-with-dependencys
+
 ### Desplegar en ec2.
 
-Una ves el pipeline definido , en la ec2 descargare todo.
+Usar la imagen creada para que el pod de jenkins utilice los archivos que estan dentro de la misma imagen.
+
 
 # comandos
 
