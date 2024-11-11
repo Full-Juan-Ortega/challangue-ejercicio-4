@@ -32,9 +32,9 @@ Determine que el ejercicio requeria utilizar el pod que habia creado de jenkins 
 
 ## Trabajo en mi pc local : 
 
-1) [Prepare los recursos terraform.](#2-conseguir-los-archivos-de-tf-del-caso-2)
-2) Genere una imagen de docker con todas las dependencias para el pod y subirla al registry.
-3) Cree el jenkisfile que desplegaria el IaC.
+1) [Prepare los recursos terraform.](#2-prepare-los-recursos-terraform)
+2) Genere una imagen de docker con todas las dependencias para el pod y subirla al registry.(#3-genere-una-imagen-de-docker-con-todas-las-dependencias-para-el-pod-y-subirla-al-registry)
+3) Cree el jenkisfile que desplegaria el IaC.(#4-cree-el-jenkisfile-que-desplegaria-el-ia-c)
 4) Subi todos estos archivos en el repositorio.
 
 ## Trabajo en la ec2:
