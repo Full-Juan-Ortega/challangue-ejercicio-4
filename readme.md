@@ -129,10 +129,10 @@ docker push juanortegait/jenkins-with-dependencys
 
 Usar la imagen creada para que el pod de jenkins utilice los archivos que estan dentro de la misma imagen.
 
-- Traer la imagen del registry.
-- modificar el pod kubernetes para que el pod despliegue esa imagen.
-- levantar el pod de jenkins , hacer la config inicial y instalar el plugins aws credentials.
-- crear las credenciales y crear el job que despliegue el jenkinsfile en el repositorio.
+- Traer la imagen del registry -> docker pull juanortegait/jenkins-with-dependencys:v1
+- modificar el pod kubernetes para que el pod despliegue esa imagen.  
+- instalar aws credentials y crear las credenciales en el pod de jenkins.
+- crear el job que despliegue el jenkinsfile en el repositorio.
 
 
 # comandos

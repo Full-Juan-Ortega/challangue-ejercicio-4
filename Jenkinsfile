@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     environment {
-        AWS_REGION = 'us-east-1'  // Región de AWS
+        AWS_REGION = 'us-east-1'
     }
 
     stages {
@@ -28,10 +28,10 @@ pipeline {
 
         stage('terraform apply') {
             steps {
-                 withCredentials([aws(credentialsId: 'AWS-CREDENTIALS')]) { // Reemplaza 'my-aws-credentials' con tu ID de credenciales
-                    dir('challangue-ejercicio-4/terraform') {  // Cambia al directorio correcto
-                        sh 'pwd'  // Verifica el directorio
-                        sh 'terraform init'  // Ejecuta terraform plan
+                 withCredentials([aws(credentialsId: 'AWS-CREDENTIALS')]) { 
+                    dir('challangue-ejercicio-4/terraform') {  
+                        sh 'pwd'  
+                        sh 'terraform init'  
                         sh 'terraform apply -auto-approve'
                     }
                 }
