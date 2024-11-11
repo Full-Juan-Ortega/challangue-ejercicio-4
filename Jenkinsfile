@@ -17,15 +17,6 @@ pipeline {
                 sh 'git clone https://github.com/Full-Juan-Ortega/challangue-ejercicio-4.git'
             }
         }
-        /*stage('List S3 Buckets') {
-            steps {
-                withCredentials([aws(credentialsId: 'AWS-CREDENTIALS')]) { 
-                    sh 'aws s3 ls'
-                }
-            }
-        }*/
-        
-
         stage('terraform apply') {
             steps {
                  withCredentials([aws(credentialsId: 'AWS-CREDENTIALS')]) { 

@@ -3,9 +3,9 @@
 FROM jenkins/jenkins:lts
 
 USER root
-#copiar al usuario de jenkins
+#copiar al usuario de jenkins ( este paso quedo opcional dado que termine usando archivos de github para deployar )
 COPY ./terraform /home/jenkins/terraform
-COPY ./kubernetes /home/jenkins/kubernetes
+COPY ./kubernetes /home/jenkins/kuber
 # Actualizar y preparar el sistema para la instalación de Terraform
 RUN apt update && \
     apt install -y wget gnupg lsb-release software-properties-common && \
