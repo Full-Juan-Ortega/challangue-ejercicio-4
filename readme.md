@@ -19,7 +19,7 @@ kubectl apply -f .
 kubectl port-forward svc/jenkins 30000:30000 --address 0.0.0.0 &
 ```
 
-Link publico de la ec2<http://44.210.52.58:30000/>
+Link publico de jenkins enla ec2 : <http://44.210.52.58:30000/>
 
 Datos de Jenkins :  
 user : juan  
