@@ -10,7 +10,7 @@ NOTA: Este pipeline debera utilizar el state remoto del Caso 2.
 
 ## Levantar la ec2 "ejercicio-02" en la region us-east-1.
 
-Si los recursos kubernetes no estan levantados :
+Si los recursos kubernetes no estan levantados :  
 
 ```bash
 cd ./kubernetes
@@ -21,43 +21,35 @@ kubectl port-forward svc/jenkins 30000:30000 --address 0.0.0.0 &
 
 Link publico de jenkins enla ec2 : <http://44.210.52.58:30000/>
 
-Datos de Jenkins :  
-user : juan  
-password : 1234  
-
-
 # Analisis resumido y depurado: 
 
 Determine que el ejercicio requeria utilizar el pod que habia creado de jenkins en el caso 3 dado eso no utilice jenkins directamente en la ec2.
 
 ## Trabajo en mi pc local : 
 
-1) [Prepare los recursos terraform.](#2-prepare-los-recursos-terraform)
-2) Genere una imagen de docker con todas las dependencias para el pod y subirla al registry.
-3) Cree el jenkisfile que desplegaria el IaC.
-4) Subi todos estos archivos en el repositorio.
+1. [Prepare los recursos Terraform.](#2-traer-al-repositorio-los-archivos-tf-del-caso-dos-y-crear-los-nuevos-recursos)
+2. [Genere una imagen de Docker con todas las dependencias para el pod y luego la subi al registry.](#6-imagen-docker-con-todas-las-dependencias)
+3. [Cree el Jenkinsfile que desplegará el IaC.](#5-jenkins-pipeline)
+4. Subí todos estos archivos en el repositorio.
 
-## Trabajo en la ec2:
+## Trabajo en la EC2:
 
-1) Descargue la imagen del registry -> docker pull juanortegait/jenkins-with-dependencys:v1
-2) Modifique el pod kubernetes para que el pod despliegue esta nueva imagen de jenkins.
-3) Desplegue jenkins publicamente.
-4) En el pod de jenkins instalar aws credentials , cree las credenciales tanto para aws como github.
-5) Cree el pipeline que busca en el repositorio el jenkinsfile.
+1. [Descargue la imagen del registry.](#8-descargar-y-desplegar-en-ec2)
+2. Modifique el pod de Kubernetes para que despliegue esta nueva imagen de Jenkins.
+3. Despliegue Jenkins públicamente.
+4. [En el pod de Jenkins, instale AWS CLI, configure las credenciales para AWS y GitHub.](#4-dependencias-necesarias-dentro-del-pod)
+5. Cree el pipeline que utiliza el Jenkinsfile del repositorio.
 
 
 # Paso a paso :
 
 ## 1. Cree el repositorio.
 
-Empece creando una carpeta dentro del repositorio que voy llevando todo lo relativo a hado :   
-<https://github.com/Full-Juan-Ortega/devops-practices/tree/main/integrador/04-ejercicio>
+Empece utilizando un [repositorio que tengo para hado].(https://github.com/Full-Juan-Ortega/devops-practices/tree/main/integrador/04-ejercicio)
 
 Por consejo de mi mentor asignado termine haciendo un nuevo repositorio especifico para este ejercicio.(el que estan viendo)
 
-**Nuevo aprendizaje :** Deje de usar la auth de git via access token y use ssh que es mas practico.   
-
-<https://docs.github.com/es/enterprise-cloud@latest/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent>
+**Nuevo aprendizaje :** Deje de usar la auth de git via access token y use ssh que es mas practico [utilice la documentacion oficial de github.](https://docs.github.com/es/enterprise-cloud@latest/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent)
 
 ```bash
 ssh-keygen -t ed25519 -C "juan.ortega.it@gmail.com"  
@@ -74,27 +66,24 @@ ssh -T git@github.com
  
 [Enlace a terraform 05-s3-node-app-logs.tf](./terraform/05-s3-node-app-logs.tf)
 
-Cree el bucket y para los requerimentos adicionales ( versionado y nombre prefix ) estuve averiguando en la documentacion oficial.  
+Cree el bucket y para los requerimentos adicionales ( versionado y nombre prefix ) [estuve en la documentacion del proveedor oficial.(aws s3)](<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket>)
 
-<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket>  
-
-Para manejar el versionado cree un recurso adicional del tipo aws_s3_bucket_versioning  
-
-<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning>  
-
+Para el versionado utilice el recurso [aws_s3_bucket_versioning](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) 
+  
 Para verificar que todo este funcionando tal como necesito accedi a las propiedades del bucket.
 
 ### IAM Role con permisos para acceder a la vpc-node-app con permisos para acceder al bucket de s3 node-app-backup
 
-En este caso cree la politica ,el ROL y su correspondiente asociacion.
+Aca revise la seccion de documentacion del proveedor 
+[IAM ROLE](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) y 
+[POLICY](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy)
 
-<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role>  
-<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy>  
+
 
 **Nuevo aprendizaje :** En este paso aprendi un poco mas de roles y policys , principalmente porque queria verificar que el rol y las policys creadas cumplieran con lo que necesitaba , para eso indague en el aws simulator y en la documentacion oficial.
 
 
-## Entorno local pruebas con docker y jenkins.
+## 3. Entorno local pruebas con docker y jenkins.
 
 Como punto de partida use la imagen oficial [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins).
 
@@ -113,10 +102,10 @@ password : 1234
 3) instalar aws credentials y cargar las credenciales.
 4) con username&password cargar el usuario y access key de github.
 
-## dependencias necesarias dentro del pod.
+## 4. dependencias necesarias dentro del pod.
 
 ### Terraform.
-<>
+
 Segui la [instalacion oficial de terraform](https://developer.hashicorp.com/terraform/install?product_intent=terraform#linux) solo le agregue un autoaprove.  
 
 Como root user :  
@@ -141,7 +130,7 @@ unzip awscliv2.zip
 ./aws/install  
 ```
 
-## Jenkins Pipeline
+## 5. Jenkins Pipeline
 
 Empeze siguiendo la [documentacion oficial de Jenkins](https://www.jenkins.io/doc/book/pipeline/getting-started/) y fui mejorando el pipeline haciendo las siguientes pruebas :  
 
@@ -155,13 +144,13 @@ Empeze siguiendo la [documentacion oficial de Jenkins](https://www.jenkins.io/do
 
 **Nuevo aprendizaje** : Aprendi sobre la sintaxis y credenciales de groovy y jenkins.
 
-## Imagen docker con todas las dependencias.
+## 6. Imagen docker con todas las dependencias.
 
 Cree el dockerfile y use los comandos que venia trabajando ya para instalar aws cli y terraform. En el proceso hice algunos debugs normales como el mapeo de puertos y autoaprove de la instalacion.  
 
 Por otro lado despues le hice un docker compose y mas tarde me di cuenta que lo iba a manejar con kubernetes asique lo elimine.
 
-## Subir la imagen a docker hub para despues usarla en la ec2 con minikube.
+## 7. Subir la imagen a docker hub para despues usarla en la ec2 con minikube.
 
   
 Esta imagen contiene los archivos tf , de k8 y jenkins. ( que despues no los use ya que use los archivos del repositorio).  
@@ -173,7 +162,7 @@ docker build -t juanortegait/jenkins-with-dependencys:v1 .
 docker push juanortegait/jenkins-with-dependencys
 ```
   
-## Descargar y desplegar en EC2.
+## 8. Descargar y desplegar en EC2.
 
 Usar la imagen creada para que el pod de jenkins utilice los archivos que estan dentro de la misma imagen.
 
