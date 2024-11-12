@@ -41,6 +41,11 @@ Determine que el ejercicio requeria utilizar el pod que habia creado de jenkins 
 5. Cree el pipeline que utiliza el Jenkinsfile del repositorio.
 
 
+## ![Despliegue exitoso de Jenkins en el pod de la ec2](./img/deploy-iac-in-aws-sucesfully.PNG)
+
+
+
+
 # Paso a paso :
 
 ## 1. Cree el repositorio.
@@ -143,6 +148,8 @@ Empeze siguiendo la [documentacion oficial de Jenkins](https://www.jenkins.io/do
 7) Crear el pipeline que despliega desde github.
 
 **Nuevo aprendizaje** : Aprendi sobre la sintaxis y credenciales de groovy y jenkins.
+
+![Trabajo exitoso!](./img/job-in-ec2.PNG)
 
 ## 6. Imagen docker con todas las dependencias.
 
