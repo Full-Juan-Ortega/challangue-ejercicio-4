@@ -4,8 +4,6 @@ Vamos a necesitar un pipeline que despliegue IaC que anteriormente habiamos impo
 - S3 con versionamiento llamado con el prefix: node-app-logs-*.
 NOTA: Este pipeline debera utilizar el state remoto del Caso 2.
 
-<br>
-
 # Como desplegar en ec2:
 
 ## Levantar la ec2 "ejercicio-02" en la region us-east-1.
@@ -42,8 +40,6 @@ Determine que el ejercicio requeria utilizar el pod que habia creado de jenkins 
 
 
 ## ![Despliegue exitoso de Jenkins en el pod de la ec2](./img/deploy-iac-in-aws-sucesfully.PNG)
-
-
 
 
 # Paso a paso :
@@ -100,10 +96,6 @@ docker run -dti -p 30000:8080 --restart=on-failure -v /home/juan/jenkins_data:/v
 
 1) Cargue el codigo inicial.
 2) Install sugested pluggins.
-datos de jenkins : 
-url : http://44.210.52.58:30000/  
-user : juan  
-password : 1234 
 3) instalar aws credentials y cargar las credenciales.
 4) con username&password cargar el usuario y access key de github.
 
