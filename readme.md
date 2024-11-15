@@ -46,7 +46,7 @@ Determine que el ejercicio requeria utilizar el pod que habia creado de jenkins 
 
 ## 1. Cree el repositorio.
 
-Empece utilizando un [repositorio que tengo para hado].(https://github.com/Full-Juan-Ortega/devops-practices/tree/main/integrador/04-ejercicio)
+Empece utilizando un [repositorio que tengo para hado](https://github.com/Full-Juan-Ortega/devops-practices/tree/main/integrador/04-ejercicio)
 
 Por consejo de mi mentor asignado termine haciendo un nuevo repositorio especifico para este ejercicio.(el que estan viendo)
 
