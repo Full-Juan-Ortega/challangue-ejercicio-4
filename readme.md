@@ -6,7 +6,7 @@ NOTA: Este pipeline debera utilizar el state remoto del Caso 2.
 
 ## Solucion : 
 
-[![Watch the video](https://cdn.loom.com/sessions/thumbnails/c6d096241c734a60867ed775765e542a-59e25a5451e9f26a-full-play.gif)](https://www.loom.com/share/c6d096241c734a60867ed775765e542a?sid=0f5c9dc4-8e5b-46e5-87ae-dff192e2d81b)
+![Watch the video](https://cdn.loom.com/sessions/thumbnails/dfbfaf99bdc64648a1508888fc229a66-e84b0266a9e2c0b9-full-play.gif)(https://www.loom.com/share/dfbfaf99bdc64648a1508888fc229a66)
 
 ## Levantar la ec2 "ejercicio-02" en la region us-east-1.
 
