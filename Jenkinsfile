@@ -23,7 +23,7 @@ pipeline {
                     dir('challangue-ejercicio-4/terraform') {  
                         sh 'pwd'  
                         sh 'terraform init'
-                        sh 'terraform destroy -auto-approve'
+                        sh 'terraform destroy -auto-approve || true'
                         sh 'aws s3 ls'
                         sh 'terraform apply -auto-approve'
                     }
