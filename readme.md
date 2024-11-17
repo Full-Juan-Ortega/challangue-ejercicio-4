@@ -1,10 +1,12 @@
-# Descripcion del ejercicio 4 - Pipeline para el despliegue de IaC de Terraform via Jenkins  
+## Descripcion del ejercicio 4 - Pipeline para el despliegue de IaC de Terraform via Jenkins  
 Vamos a necesitar un pipeline que despliegue IaC que anteriormente habiamos importado (Caso 2) utilizando Jenkins. Ademas de los recursos anteriores, tambien vamos a necesitar son los siguientes.  
 - IAM Role con permisos para acceder a la vpc-node-app, permisos para acceder al bucket de s3 node-app-backup.
 - S3 con versionamiento llamado con el prefix: node-app-logs-*.
 NOTA: Este pipeline debera utilizar el state remoto del Caso 2.
 
-# Como desplegar en ec2:
+## Solucion : 
+
+[![Watch the video](https://cdn.loom.com/sessions/thumbnails/c6d096241c734a60867ed775765e542a-59e25a5451e9f26a-full-play.gif)](https://www.loom.com/share/c6d096241c734a60867ed775765e542a?sid=0f5c9dc4-8e5b-46e5-87ae-dff192e2d81b)
 
 ## Levantar la ec2 "ejercicio-02" en la region us-east-1.
 
@@ -64,8 +66,6 @@ ssh -T git@github.com
 
 
 ### Agregar s3.
- 
-[Enlace a terraform 05-s3-node-app-logs.tf](./terraform/05-s3-node-app-logs.tf)
 
 Cree el bucket y para los requerimentos adicionales ( versionado y nombre prefix ) [estuve en la documentacion del proveedor oficial.(aws s3)](<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket>)
 
