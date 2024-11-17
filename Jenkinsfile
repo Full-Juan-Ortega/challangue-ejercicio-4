@@ -22,7 +22,9 @@ pipeline {
                  withCredentials([aws(credentialsId: 'AWS-CREDENTIALS')]) { 
                     dir('challangue-ejercicio-4/terraform') {  
                         sh 'pwd'  
-                        sh 'terraform init'  
+                        sh 'terraform init'
+                        sh 'terraform destroy -auto-approve'
+                        sh 'aws s3 ls'
                         sh 'terraform apply -auto-approve'
                     }
                 }
