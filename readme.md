@@ -4,9 +4,9 @@ Vamos a necesitar un pipeline que despliegue IaC que anteriormente habiamos impo
 - S3 con versionamiento llamado con el prefix: node-app-logs-*.
 NOTA: Este pipeline debera utilizar el state remoto del Caso 2.
 
-## Solucion : 
+## Solucion :  
 
-![Watch the video](https://cdn.loom.com/sessions/thumbnails/dfbfaf99bdc64648a1508888fc229a66-e84b0266a9e2c0b9-full-play.gif)(https://www.loom.com/share/dfbfaf99bdc64648a1508888fc229a66)
+[![Watch the video](https://cdn.loom.com/sessions/thumbnails/dfbfaf99bdc64648a1508888fc229a66-e84b0266a9e2c0b9-full-play.gif)](https://www.loom.com/share/dfbfaf99bdc64648a1508888fc229a66)
 
 ## Levantar la ec2 "ejercicio-02" en la region us-east-1.
 
