@@ -9,7 +9,7 @@ spec:
   capacity:
     storage: 8Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   hostPath: 
     path: /data/jenkins  # Ajusta esto según tu entorno, esto es un ejemplo para local
 
@@ -21,7 +21,7 @@ metadata:
   name: jenkins-home-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 5Gi
